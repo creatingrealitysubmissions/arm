@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: cfa8749a1e0264077a3797ec7929e18d
+timeCreated: 1456062275
+licenseType: Store
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  isOverridable: 0
+  platformData:
+  - first:
+      Any: 
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      Editor: Editor
+    second:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  - first:
+      Windows Store Apps: WindowsStoreApps
+    second:
+      enabled: 1
+      settings:
+        CPU: ARM
+        SDK: PhoneSDK81
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
