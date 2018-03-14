@@ -35,7 +35,7 @@ public class ArmController : MonoBehaviour {
             armMesh = GameObject.FindWithTag("ArmArmature");
 
             if (armMesh == null) {
-                Debug.Log("no armMesh gameObject found. Did you forget to tag your gameObject?");
+                Debug.Log("No armMesh gameObject found. Did you forget to tag your gameObject?");
             }
         }
     }
@@ -69,6 +69,9 @@ public class ArmController : MonoBehaviour {
 
         elbowIKTarget.transform.position = smoothedElbowPosition;
         wristIKTarget.transform.position = smoothedWristPosition;
+
+        elbowIKTarget.transform.rotation = Quaternion.Lerp(elbowIKTarget.transform.rotation, elbowTarget.transform.rotation, Time.deltaTime * magicSmoothValue);
+        wristIKTarget.transform.rotation = Quaternion.Lerp(wristIKTarget.transform.rotation, wristTarget.transform.rotation, Time.deltaTime * magicSmoothValue);
 
         if (!cylinder) {
             Debug.Log("Making cylinder!");
