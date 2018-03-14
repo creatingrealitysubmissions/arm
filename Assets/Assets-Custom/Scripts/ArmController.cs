@@ -10,7 +10,7 @@ public class ArmController : MonoBehaviour {
     public GameObject elbowIKTarget;
     public GameObject wristIKTarget;
 
-    public GameObject[] armObjects = new GameObject[3];
+    public Renderer[] armRenderers = new Renderer[3];
     public int activeArmIndex = 0;
 
     Renderer myElbowRenderer;
@@ -41,6 +41,14 @@ public class ArmController : MonoBehaviour {
                 Debug.Log("No armMesh gameObject found. Did you forget to tag your gameObject?");
             }
         }
+
+        // At launch, disable all armRenderers except the first:
+        for (int i = 0; i < armRenderers.Length; i++) {
+            if (i != activeArmIndex) { 
+                armRenderers[i].enabled = false;
+            }
+        }
+
     }
     
     // Update is called once per frame
@@ -91,15 +99,15 @@ public class ArmController : MonoBehaviour {
     }
 
     void SwitchArms(int armIndex) {
-        var newArmIndex = armIndex == (armObjects.Length - 1) ? 0 : armIndex + 1;
+        var newArmIndex = armIndex == (armRenderers.Length - 1) ? 0 : armIndex + 1;
 
-        for (int i = 0; i < armObjects.Length; i++) {
+        for (int i = 0; i < armRenderers.Length; i++) {
             if (i != newArmIndex) { 
-                armObjects[i].SetActive(false); 
+                armRenderers[i].enabled = false;
             }
         }
 
-        armObjects[newArmIndex].SetActive(true);
+        armRenderers[newArmIndex].enabled = true;
 
         activeArmIndex = newArmIndex;
         return;

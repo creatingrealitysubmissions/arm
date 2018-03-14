@@ -1,12 +1,28 @@
 fileFormatVersion: 2
-guid: c4e39b7aee68e4f3088193d39f4b0d30
-timeCreated: 1520978759
+guid: 58361fbf8b9e94b598b88221947c068b
+timeCreated: 1521063213
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Armature
+    100004: ForeArm
+    100006: MiddleFinder
+    100008: MiddleFinder_end
+    100010: Robotic_Arm:polySurface1
+    100012: Shoulder
+    100014: UpperArm
+    100016: Wrist
     400000: //RootNode
+    400002: Armature
+    400004: ForeArm
+    400006: MiddleFinder
+    400008: MiddleFinder_end
+    400010: Robotic_Arm:polySurface1
+    400012: Shoulder
+    400014: UpperArm
+    400016: Wrist
     2100000: Robotic_Arm_Color_E03
     2100002: Robotic_Arm_Color_008
     2100004: Robotic_Arm_FrontColor1
@@ -14,10 +30,9 @@ ModelImporter:
     2100008: Robotic_Arm_Color_I03
     2100010: Robotic_Arm_Color_C03
     2100012: Robotic_Arm_Color_E09
-    2300000: //RootNode
-    3300000: //RootNode
     4300000: Robotic_Arm:polySurface1
     9500000: //RootNode
+    13700000: Robotic_Arm:polySurface1
   externalObjects: {}
   materials:
     importMaterials: 1
