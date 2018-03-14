@@ -326,15 +326,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: M5_2in
+  mTrackableName: M5_bw_8in
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/arm-targets.xml
   mExtendedTracking: 1
   mAspectRatio: 1
   mImageTargetType: 0
-  mWidth: 1
-  mHeight: 1
+  mWidth: 2
+  mHeight: 2
 --- !u!4 &157072732
 Transform:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 157072726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.31, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1365736169}
   m_Father: {fileID: 0}
@@ -563,7 +563,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.5}
+      m_Extent: {x: 0.5, y: 0, z: 0.375}
   m_Shapes:
     vertices: []
     shapes: []
@@ -616,7 +616,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf00000000000000bf000000000000803f000000000000000000000000000000bf000000000000003f000000000000803f00000000000000000000803f0000003f00000000000000bf000000000000803f000000000000803f000000000000003f000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 000000bf000000000000c0be000000000000803f000000000000000000000000000000bf000000000000c03e000000000000803f00000000000000000000803f0000003f000000000000c0be000000000000803f000000000000803f000000000000003f000000000000c03e000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -855,15 +855,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: Mixed_2in
+  mTrackableName: paper-elaborate-8in
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/arm-targets.xml
   mExtendedTracking: 1
-  mAspectRatio: 1
+  mAspectRatio: 0.75
   mImageTargetType: 0
-  mWidth: 1
-  mHeight: 1
+  mWidth: 2
+  mHeight: 1.5
 --- !u!4 &564899566
 Transform:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ Transform:
   m_GameObject: {fileID: 564899560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1223771191}
   m_Father: {fileID: 0}
@@ -884,7 +884,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M5_2inMaterial
+  m_Name: M5_bw_8inMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -897,7 +897,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dc27d7ace1064d259e78f0ff440419c5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 87a25843e37f49b39f07693927705e18, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
