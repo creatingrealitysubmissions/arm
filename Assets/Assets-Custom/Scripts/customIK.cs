@@ -17,6 +17,7 @@ public class customIK : MonoBehaviour {
 	// is it enabled?
 	// public bool IsEnabled;
 	public float Weight = 1;
+	float magicSmoothValue = 10.0f;
 
 	// Starting rotations
 	Quaternion upperArmStartRotation, forearmStartRotation,handStartRotation;
@@ -191,8 +192,8 @@ public class customIK : MonoBehaviour {
 		Weight = Mathf.Clamp01(Weight);
 
 		// Trying lerp w/ deltaTime instead of Slerp with canned Weight value;
-		upperArm.rotation = Quaternion.Lerp(upperArmRotation, upperArm.rotation, Time.deltaTime * 10 );
-		forearm.rotation = Quaternion.Lerp(forearmRotation, forearm.rotation, Time.deltaTime * 10 );
+		upperArm.rotation = Quaternion.Lerp(upperArmRotation, upperArm.rotation, Time.deltaTime * magicSmoothValue);
+		forearm.rotation = Quaternion.Lerp(forearmRotation, forearm.rotation, Time.deltaTime * magicSmoothValue);
 		hand.rotation = target.rotation; // Quaternion.Slerp(handRotation, target.rotation, Time.deltaTime * 10 );
 
 	}

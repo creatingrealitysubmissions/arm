@@ -9,6 +9,12 @@ public class ArmController : MonoBehaviour {
     Renderer myElbowRenderer;
     Renderer myWristRenderer;
 
+    Vector3 actualElbowPosition;
+    Vector3 actualWristPosition;
+    Vector3 smoothedElbowPosition = Vector3.zero;
+    Vector3 smoothedWristPosition = Vector3.zero;
+    float magicSmoothValue = 0.7f;
+
     GameObject armMesh;
 
     GameObject cylinder;
@@ -40,13 +46,35 @@ public class ArmController : MonoBehaviour {
             Debug.Log("elbow visible!");
         }
 
+        // Manage Vuforia jitter through lerping:
+        actualElbowPosition = myElbowTarget.transform.position;
+        actualWristPosition = myWristTarget.transform.position;
+
+        // naive/basic lerp:
+        // smoothedElbowPosition = Vector3.Lerp (smoothedElbowPosition, actualElbowPosition, magicSmoothValue * Time.deltaTime);
+        // smoothedWristPosition = Vector3.Lerp (smoothedWristPosition, actualWristPosition, magicSmoothValue * Time.deltaTime);
+
+        // Debug.Log("Initial smoothed elbow pos: " + smoothedElbowPosition);
+        // Debug.Log("Actual elbow pos: " + actualElbowPosition);
+
+        // `SuperSmoothLerp` is a more sophisticated approach via comtinuous integration. 
+        // Could alsp try `Vector3.SmoothDamp`?:
+        smoothedElbowPosition = SuperSmoothLerp(smoothedElbowPosition, actualElbowPosition, myElbowTarget.transform.position, Time.deltaTime, magicSmoothValue);
+        // Debug.Log("Updated smoothed elbow pos: " + smoothedElbowPosition);
+        smoothedWristPosition = SuperSmoothLerp(smoothedWristPosition, actualWristPosition, myWristTarget.transform.position, Time.deltaTime, magicSmoothValue);
+
         if (!cylinder) {
             Debug.Log("Making cylinder!");
-            CreateCylinderBetweenPoints(myElbowTarget.transform.position, myWristTarget.transform.position, width);
+            CreateCylinderBetweenPoints(smoothedElbowPosition, smoothedWristPosition, width);
         } else if (myElbowRenderer && myElbowRenderer.enabled && myWristRenderer && myWristRenderer.enabled) {
-            UpdateCylinderBetweenPoints(myElbowTarget.transform.position, myWristTarget.transform.position, width);
+            UpdateCylinderBetweenPoints(smoothedElbowPosition, smoothedWristPosition, width);
         }
     }
+
+    // void LateUpdate () {
+    //     smoothedElbowPosition = Vector3.Lerp (smoothedElbowPosition, actualElbowPosition, magicSmoothValue * Time.deltaTime);
+    //     smoothedWristPosition = Vector3.Lerp (smoothedWristPosition, actualWristPosition, magicSmoothValue * Time.deltaTime);
+    // }
 
     void CreateCylinderBetweenPoints(Vector3 start, Vector3 end, float width) {
         Vector3 offset = end - start;
@@ -68,7 +96,7 @@ public class ArmController : MonoBehaviour {
         if (armMesh == null) {
             Debug.Log("no armMesh gameObject found. Did you forget to tag your gameObject?");
         } else {
-            armMesh.transform.position = myElbowTarget.transform.position;
+            armMesh.transform.position = start;
         }
 
         cylinder.transform.up = offset;
@@ -76,4 +104,8 @@ public class ArmController : MonoBehaviour {
         cylinder.transform.localScale = scale;
     }
 
+    Vector3 SuperSmoothLerp(Vector3 x0, Vector3 y0, Vector3 yt, float t, float k) {
+        Vector3 f = x0 - y0 + (yt - y0) / (k * t);
+        return yt - (yt - y0) / (k*t) + f * Mathf.Exp(-k*t);
+    }
 }
