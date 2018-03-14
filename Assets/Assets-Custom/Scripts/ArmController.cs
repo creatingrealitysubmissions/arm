@@ -10,6 +10,9 @@ public class ArmController : MonoBehaviour {
     public GameObject elbowIKTarget;
     public GameObject wristIKTarget;
 
+    public GameObject[] armObjects = new GameObject[3];
+    public int activeArmIndex = 0;
+
     Renderer myElbowRenderer;
     Renderer myWristRenderer;
 
@@ -42,13 +45,19 @@ public class ArmController : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        // if (myWristRenderer && myWristRenderer.enabled) {
-        //     Debug.Log("wrist visible!");
-        // }
-        
-        // if (myElbowRenderer && myElbowRenderer.enabled) {
-        //     Debug.Log("elbow visible!");
-        // }
+
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Ended) {
+                Debug.Log("TouchPhase.ended detected");
+                SwitchArms(activeArmIndex);
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0)) {
+            Debug.Log("mouse button pressed");
+            SwitchArms(activeArmIndex);
+        }
 
         // Manage Vuforia jitter through lerping:
         actualElbowPosition = elbowTarget.transform.position;
@@ -81,10 +90,20 @@ public class ArmController : MonoBehaviour {
         }
     }
 
-    // void LateUpdate () {
-    //     smoothedElbowPosition = Vector3.Lerp (smoothedElbowPosition, actualElbowPosition, magicSmoothValue * Time.deltaTime);
-    //     smoothedWristPosition = Vector3.Lerp (smoothedWristPosition, actualWristPosition, magicSmoothValue * Time.deltaTime);
-    // }
+    void SwitchArms(int armIndex) {
+        var newArmIndex = armIndex == (armObjects.Length - 1) ? 0 : armIndex + 1;
+
+        for (int i = 0; i < armObjects.Length; i++) {
+            if (i != newArmIndex) { 
+                armObjects[i].SetActive(false); 
+            }
+        }
+
+        armObjects[newArmIndex].SetActive(true);
+
+        activeArmIndex = newArmIndex;
+        return;
+    }
 
     void CreateCylinderBetweenPoints(Vector3 start, Vector3 end, float width) {
         Vector3 offset = end - start;
