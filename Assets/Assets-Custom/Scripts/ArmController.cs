@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ArmController : MonoBehaviour {
 
+    bool isInIntro = true;
+    int activeIntroScreenIndex = 0;
+    public GameObject[] introScreens = new GameObject[3];
+    public GameObject introBackdrop;
+
     public GameObject elbowTarget;
     public GameObject wristTarget;
 
@@ -49,22 +54,34 @@ public class ArmController : MonoBehaviour {
             }
         }
 
+        for (int i = 0; i < introScreens.Length; i++) {
+            if (i != activeIntroScreenIndex) { 
+                introScreens[i].SetActive(false);
+            }
+        }
+
     }
     
     // Update is called once per frame
     void Update () {
 
-        for (int i = 0; i < Input.touchCount; ++i)
-        {
-            if (Input.GetTouch(i).phase == TouchPhase.Ended) {
-                Debug.Log("TouchPhase.ended detected");
+        if (!isInIntro) {
+            for (int i = 0; i < Input.touchCount; ++i) {
+                if (Input.GetTouch(i).phase == TouchPhase.Ended) {
+                    Debug.Log("TouchPhase.ended detected");
+                    SwitchArms(activeArmIndex);
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0)) {
+                Debug.Log("mouse button pressed");
                 SwitchArms(activeArmIndex);
             }
-        }
-
-        if (Input.GetMouseButtonUp(0)) {
-            Debug.Log("mouse button pressed");
-            SwitchArms(activeArmIndex);
+        } else {
+            if (Input.GetMouseButtonUp(0)) {
+                Debug.Log("Intro navigated");
+                SwitchIntroScreen(activeIntroScreenIndex);
+            }            
         }
 
         // Manage Vuforia jitter through lerping:
@@ -98,6 +115,28 @@ public class ArmController : MonoBehaviour {
         }
     }
 
+    void SwitchIntroScreen(int screenIndex) {
+        var newScreenIndex = screenIndex + 1;
+
+        if (newScreenIndex > introScreens.Length - 1) {
+            for (int i = 0; i < introScreens.Length; i++) {introScreens[i].SetActive(false);}
+            introBackdrop.SetActive(false);
+            isInIntro = false;
+            activeIntroScreenIndex = 0;
+            return;
+        }
+
+        for (int i = 0; i < introScreens.Length; i++) {
+            if (i != newScreenIndex) {
+                introScreens[i].SetActive(false);
+            }
+        }
+
+        introScreens[newScreenIndex].SetActive(true);
+
+        activeIntroScreenIndex = newScreenIndex;
+    }
+
     void SwitchArms(int armIndex) {
         var newArmIndex = armIndex == (armRenderers.Length - 1) ? 0 : armIndex + 1;
 
@@ -110,7 +149,6 @@ public class ArmController : MonoBehaviour {
         armRenderers[newArmIndex].enabled = true;
 
         activeArmIndex = newArmIndex;
-        return;
     }
 
     void CreateCylinderBetweenPoints(Vector3 start, Vector3 end, float width) {
