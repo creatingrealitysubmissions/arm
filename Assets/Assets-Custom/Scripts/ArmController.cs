@@ -22,7 +22,7 @@ public class ArmController : MonoBehaviour {
     GameObject armMesh;
 
     GameObject cylinder;
-    float width = 0.05f;
+    float width = 0.02f;
     public GameObject cylinderPrefab; //assumed to be 1m x 1m x 2m default unity cylinder to make calculations easy
     public GameObject cylinderParent;
 
