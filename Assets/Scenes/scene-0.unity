@@ -188,6 +188,14 @@ Prefab:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d47b91890862c4eb3a1702f76c6a02c3, type: 3}
+      propertyPath: m_TagString
+      value: ArmArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d47b91890862c4eb3a1702f76c6a02c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d47b91890862c4eb3a1702f76c6a02c3, type: 3}
   m_IsPrefabParent: 0
@@ -824,7 +832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myElbowTarget: {fileID: 1223771187}
   myWristTarget: {fileID: 1365736165}
-  armMesh: {fileID: 43649730}
+  armMesh: {fileID: 0}
   cylinderPrefab: {fileID: 1566233003206728, guid: ddb0c93a5719b487e9723e624f958c53,
     type: 2}
   cylinderParent: {fileID: 2012662983}
@@ -1862,6 +1870,10 @@ Prefab:
     - target: {fileID: 9500000, guid: 3d2c08657f33649bd8c2084ba4d5579d, type: 3}
       propertyPath: m_UpdateMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3d2c08657f33649bd8c2084ba4d5579d, type: 3}
+      propertyPath: m_TagString
+      value: ArmArmature
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d2c08657f33649bd8c2084ba4d5579d, type: 3}

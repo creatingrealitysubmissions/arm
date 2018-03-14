@@ -9,11 +9,10 @@ public class ArmController : MonoBehaviour {
     Renderer myElbowRenderer;
     Renderer myWristRenderer;
 
-    public GameObject armMesh;
+    GameObject armMesh;
 
-    float width = 0.05f;
-    
     GameObject cylinder;
+    float width = 0.05f;
     public GameObject cylinderPrefab; //assumed to be 1m x 1m x 2m default unity cylinder to make calculations easy
     public GameObject cylinderParent;
 
@@ -21,6 +20,14 @@ public class ArmController : MonoBehaviour {
     void Start () {
         myElbowRenderer = myElbowTarget.GetComponent<Renderer>();
         myWristRenderer = myWristTarget.GetComponent<Renderer>();
+
+        if (!armMesh) {
+            armMesh = GameObject.FindWithTag("ArmArmature");
+
+            if (armMesh == null) {
+                Debug.Log("no armMesh gameObject found. Did you forget to tag your gameObject?");
+            }
+        }
     }
     
     // Update is called once per frame
@@ -58,7 +65,11 @@ public class ArmController : MonoBehaviour {
         var scale = new Vector3(width, offset.magnitude / 2.0f, width);
         var position = start + (offset / 2.0f);
 
-        armMesh.transform.position = myElbowTarget.transform.position;
+        if (armMesh == null) {
+            Debug.Log("no armMesh gameObject found. Did you forget to tag your gameObject?");
+        } else {
+            armMesh.transform.position = myElbowTarget.transform.position;
+        }
 
         cylinder.transform.up = offset;
         cylinder.transform.position = position;
