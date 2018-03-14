@@ -2043,10 +2043,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13687fa2d9b2645daa566e9dad51f58c, type: 3}
   m_IsPrefabParent: 0
---- !u!4 &1278702107 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400010, guid: 13687fa2d9b2645daa566e9dad51f58c, type: 3}
-  m_PrefabInternal: {fileID: 1278702106}
 --- !u!4 &1278702108 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 13687fa2d9b2645daa566e9dad51f58c, type: 3}
@@ -2072,7 +2068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperArm: {fileID: 1278702109}
   forearm: {fileID: 1278702108}
-  hand: {fileID: 1278702107}
+  hand: {fileID: 2106589167}
   target: {fileID: 375036149}
   elbowTarget: {fileID: 1791556196}
   Weight: 1
