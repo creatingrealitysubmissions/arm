@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ArmController : MonoBehaviour {
 
-    public GameObject myElbowTarget;
-    public GameObject myWristTarget;
+    public GameObject elbowTarget;
+    public GameObject wristTarget;
+
+    public GameObject elbowIKTarget;
+    public GameObject wristIKTarget;
+
     Renderer myElbowRenderer;
     Renderer myWristRenderer;
 
@@ -13,7 +17,7 @@ public class ArmController : MonoBehaviour {
     Vector3 actualWristPosition;
     Vector3 smoothedElbowPosition = Vector3.zero;
     Vector3 smoothedWristPosition = Vector3.zero;
-    float magicSmoothValue = 0.7f;
+    float magicSmoothValue = 20.0f;
 
     GameObject armMesh;
 
@@ -24,8 +28,8 @@ public class ArmController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        myElbowRenderer = myElbowTarget.GetComponent<Renderer>();
-        myWristRenderer = myWristTarget.GetComponent<Renderer>();
+        myElbowRenderer = elbowTarget.GetComponent<Renderer>();
+        myWristRenderer = wristTarget.GetComponent<Renderer>();
 
         if (!armMesh) {
             armMesh = GameObject.FindWithTag("ArmArmature");
@@ -38,17 +42,17 @@ public class ArmController : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        if (myWristRenderer && myWristRenderer.enabled) {
-            Debug.Log("wrist visible!");
-        }
+        // if (myWristRenderer && myWristRenderer.enabled) {
+        //     Debug.Log("wrist visible!");
+        // }
         
-        if (myElbowRenderer && myElbowRenderer.enabled) {
-            Debug.Log("elbow visible!");
-        }
+        // if (myElbowRenderer && myElbowRenderer.enabled) {
+        //     Debug.Log("elbow visible!");
+        // }
 
         // Manage Vuforia jitter through lerping:
-        actualElbowPosition = myElbowTarget.transform.position;
-        actualWristPosition = myWristTarget.transform.position;
+        actualElbowPosition = elbowTarget.transform.position;
+        actualWristPosition = wristTarget.transform.position;
 
         // naive/basic lerp:
         // smoothedElbowPosition = Vector3.Lerp (smoothedElbowPosition, actualElbowPosition, magicSmoothValue * Time.deltaTime);
@@ -59,9 +63,12 @@ public class ArmController : MonoBehaviour {
 
         // `SuperSmoothLerp` is a more sophisticated approach via comtinuous integration. 
         // Could alsp try `Vector3.SmoothDamp`?:
-        smoothedElbowPosition = SuperSmoothLerp(smoothedElbowPosition, actualElbowPosition, myElbowTarget.transform.position, Time.deltaTime, magicSmoothValue);
+        smoothedElbowPosition = SuperSmoothLerp(smoothedElbowPosition, actualElbowPosition, elbowTarget.transform.position, Time.deltaTime, magicSmoothValue);
         // Debug.Log("Updated smoothed elbow pos: " + smoothedElbowPosition);
-        smoothedWristPosition = SuperSmoothLerp(smoothedWristPosition, actualWristPosition, myWristTarget.transform.position, Time.deltaTime, magicSmoothValue);
+        smoothedWristPosition = SuperSmoothLerp(smoothedWristPosition, actualWristPosition, wristTarget.transform.position, Time.deltaTime, magicSmoothValue);
+
+        elbowIKTarget.transform.position = smoothedElbowPosition;
+        wristIKTarget.transform.position = smoothedWristPosition;
 
         if (!cylinder) {
             Debug.Log("Making cylinder!");
