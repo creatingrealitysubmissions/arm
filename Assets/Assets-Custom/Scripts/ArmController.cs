@@ -6,15 +6,14 @@ public class ArmController : MonoBehaviour {
 
     public GameObject myElbowTarget;
     public GameObject myWristTarget;
-    public Renderer myElbowRenderer;
-    public Renderer myWristRenderer;
+    Renderer myElbowRenderer;
+    Renderer myWristRenderer;
 
     public GameObject armMesh;
-    // public GameObject myElbowBone;
-    // public GameObject myWristBone;
 
     float width = 0.05f;
-    public GameObject cylinder;
+    
+    GameObject cylinder;
     public GameObject cylinderPrefab; //assumed to be 1m x 1m x 2m default unity cylinder to make calculations easy
     public GameObject cylinderParent;
 
@@ -47,9 +46,6 @@ public class ArmController : MonoBehaviour {
         Vector3 scale = new Vector3 (width, offset.magnitude / 2.0f, width);
         Vector3 position = start + (offset / 2.0f);
 
-        // myElbowBone.transform.position = start;
-        // myWristBone.transform.position = end;
-
         cylinder = Instantiate(cylinderPrefab, position, Quaternion.identity);
         cylinder.transform.parent = cylinderParent.transform;
         cylinder.transform.up = offset;
@@ -61,9 +57,6 @@ public class ArmController : MonoBehaviour {
         var offset = end - start;
         var scale = new Vector3(width, offset.magnitude / 2.0f, width);
         var position = start + (offset / 2.0f);
-
-        // myElbowBone.transform.position = start;
-        // myWristBone.transform.position = end;
 
         armMesh.transform.position = myElbowTarget.transform.position;
 

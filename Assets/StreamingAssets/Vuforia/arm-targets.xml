@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="paper-WMRR8029-noalpha" size="0.030000 0.022500" />
     <ImageTarget name="marker-small-2" size="0.038100 0.038100" />
     <ImageTarget name="marker-small-1" size="0.038000 0.038000" />
     <ImageTarget name="generate-6" size="0.038100 0.038100" />

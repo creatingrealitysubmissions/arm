@@ -189,9 +189,11 @@ public class customIK : MonoBehaviour {
 		
 		// Transition.
 		Weight = Mathf.Clamp01(Weight);
-		upperArm.rotation = Quaternion.Slerp(upperArmRotation, upperArm.rotation, Weight);
-		forearm.rotation = Quaternion.Slerp(forearmRotation, forearm.rotation, Weight);
-		hand.rotation = target.rotation;
+
+		// Trying lerp w/ deltaTime instead of Slerp with canned Weight value;
+		upperArm.rotation = Quaternion.Lerp(upperArmRotation, upperArm.rotation, Time.deltaTime * 10 );
+		forearm.rotation = Quaternion.Lerp(forearmRotation, forearm.rotation, Time.deltaTime * 10 );
+		hand.rotation = target.rotation; // Quaternion.Slerp(handRotation, target.rotation, Time.deltaTime * 10 );
 
 	}
 

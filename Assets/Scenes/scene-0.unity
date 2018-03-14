@@ -281,7 +281,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.5}
+      m_Extent: {x: 0.5, y: 0, z: 0.37500003}
   m_Shapes:
     vertices: []
     shapes: []
@@ -334,7 +334,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf00000000000000bf000000000000803f000000000000000000000000000000bf000000000000003f000000000000803f00000000000000000000803f0000003f00000000000000bf000000000000803f000000000000803f000000000000003f000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 000000bf000000000100c0be000000000000803f000000000000000000000000000000bf000000000100c03e000000000000803f00000000000000000000803f0000003f000000000100c0be000000000000803f000000000000803f000000000000003f000000000100c03e000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -607,15 +607,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: marker-small-1
+  mTrackableName: paper-WMRR8029-noalpha
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/arm-targets.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 0.75000006
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 1
+  mHeight: 0.75000006
 --- !u!4 &564899566
 Transform:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: marker-small-1Material
+  m_Name: paper-WMRR8029-noalphaMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -653,7 +653,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 842ce404cf024c0c88a4057fc8893315, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1232173e83f345d0bbcd624f79d8dbe4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -717,10 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myElbowTarget: {fileID: 1223771187}
   myWristTarget: {fileID: 1365736165}
-  myElbowRenderer: {fileID: 0}
-  myWristRenderer: {fileID: 0}
   armMesh: {fileID: 1290816295}
-  cylinder: {fileID: 0}
   cylinderPrefab: {fileID: 1566233003206728, guid: ddb0c93a5719b487e9723e624f958c53,
     type: 2}
   cylinderParent: {fileID: 2012662983}
