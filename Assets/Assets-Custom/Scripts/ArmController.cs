@@ -34,8 +34,12 @@ public class ArmController : MonoBehaviour {
     public GameObject cylinderPrefab; //assumed to be 1m x 1m x 2m default unity cylinder to make calculations easy
     public GameObject cylinderParent;
 
+    AudioSource audio;
+
+
     // Use this for initialization
     void Start () {
+        audio = GetComponent<AudioSource>();
         myElbowRenderer = elbowTarget.GetComponent<Renderer>();
         myWristRenderer = wristTarget.GetComponent<Renderer>();
 
@@ -68,18 +72,15 @@ public class ArmController : MonoBehaviour {
         if (!isInIntro) {
             for (int i = 0; i < Input.touchCount; ++i) {
                 if (Input.GetTouch(i).phase == TouchPhase.Ended) {
-                    Debug.Log("TouchPhase.ended detected");
                     SwitchArms(activeArmIndex);
                 }
             }
 
             if (Input.GetMouseButtonUp(0)) {
-                Debug.Log("mouse button pressed");
                 SwitchArms(activeArmIndex);
             }
         } else {
             if (Input.GetMouseButtonUp(0)) {
-                Debug.Log("Intro navigated");
                 SwitchIntroScreen(activeIntroScreenIndex);
             }            
         }
@@ -149,6 +150,9 @@ public class ArmController : MonoBehaviour {
         armRenderers[newArmIndex].enabled = true;
 
         activeArmIndex = newArmIndex;
+        if (audio) {
+            audio.Play();
+        }
     }
 
     void CreateCylinderBetweenPoints(Vector3 start, Vector3 end, float width) {
