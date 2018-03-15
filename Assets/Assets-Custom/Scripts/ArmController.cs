@@ -97,7 +97,7 @@ public class ArmController : MonoBehaviour {
         // Debug.Log("Actual elbow pos: " + actualElbowPosition);
 
         // `SuperSmoothLerp` is a more sophisticated approach via comtinuous integration. 
-        // Could alsp try `Vector3.SmoothDamp`?:
+        // TODO: Could alsp try `Vector3.SmoothDamp`?:
         smoothedElbowPosition = SuperSmoothLerp(smoothedElbowPosition, actualElbowPosition, elbowTarget.transform.position, Time.deltaTime, magicSmoothValue);
         // Debug.Log("Updated smoothed elbow pos: " + smoothedElbowPosition);
         smoothedWristPosition = SuperSmoothLerp(smoothedWristPosition, actualWristPosition, wristTarget.transform.position, Time.deltaTime, magicSmoothValue);
