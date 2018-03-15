@@ -6,7 +6,7 @@ public class ArmController : MonoBehaviour {
 
     bool isInIntro = true;
     int activeIntroScreenIndex = 0;
-    public GameObject[] introScreens = new GameObject[3];
+    public GameObject[] introScreens = new GameObject[4];
     public GameObject introBackdrop;
 
     public GameObject elbowTarget;
