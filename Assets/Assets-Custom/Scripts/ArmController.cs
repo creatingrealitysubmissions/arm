@@ -34,12 +34,12 @@ public class ArmController : MonoBehaviour {
     public GameObject cylinderPrefab; //assumed to be 1m x 1m x 2m default unity cylinder to make calculations easy
     public GameObject cylinderParent;
 
-    AudioSource audio;
+    public AudioSource menuAudio;
+    public AudioSource armAudio;
 
 
     // Use this for initialization
     void Start () {
-        audio = GetComponent<AudioSource>();
         myElbowRenderer = elbowTarget.GetComponent<Renderer>();
         myWristRenderer = wristTarget.GetComponent<Renderer>();
 
@@ -136,6 +136,10 @@ public class ArmController : MonoBehaviour {
         introScreens[newScreenIndex].SetActive(true);
 
         activeIntroScreenIndex = newScreenIndex;
+        
+        if (menuAudio) {
+            menuAudio.Play();
+        }
     }
 
     void SwitchArms(int armIndex) {
@@ -150,8 +154,9 @@ public class ArmController : MonoBehaviour {
         armRenderers[newArmIndex].enabled = true;
 
         activeArmIndex = newArmIndex;
-        if (audio) {
-            audio.Play();
+        
+        if (armAudio) {
+            armAudio.Play();
         }
     }
 
